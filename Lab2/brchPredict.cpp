@@ -318,13 +318,20 @@ int main(int argc, char *argv[])
 {
     // TODO: New your Predictor below.
     // BP = new BranchPredictor();
+    BP = new BHTPredictor<16>();
 
+    // BP = new GlobalHistoryPredictor<16,24>();
+
+    // BranchPredictor* BP1 = new BHTPredictor<16>();
+	// BranchPredictor* BP2 = new GlobalHistoryPredictor<16,24>();
+	// BP = new TournamentPredictor_LSH<16>(BP1, BP2);
+    
     // Initialize pin
     if (PIN_Init(argc, argv))
         return Usage();
 
     OutFile.open(KnobOutputFile.Value().c_str());
-
+   
     // Register Instruction to be called to instrument instructions
     INS_AddInstrumentFunction(Instruction, 0);
 
